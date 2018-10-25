@@ -277,7 +277,11 @@
           if ($('#ranges').is(':checked')) {
             options.ranges = {
               'Today': [moment(), moment()],
-              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Tomorrow': [moment().subtract(3, 'days'), moment()],
+                'Random': [moment().subtract(5, 'days'), moment()],
+                'Random2': [moment().subtract(7, 'days'), moment()],
+                'Random4': [moment().subtract(8, 'days'), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
               'Last 7 Days': [moment().subtract(6, 'days'), moment()],
               'Last 30 Days': [moment().subtract(29, 'days'), moment()],
               'This Month': [moment().startOf('month'), moment().endOf('month')],
