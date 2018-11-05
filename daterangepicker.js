@@ -546,11 +546,6 @@
             if (this.timePicker) {
                 this.renderTimePicker('left');
                 this.renderTimePicker('right');
-                if (!this.endDate) {
-                    this.container.find('.right .calendar-time select').attr('disabled', 'disabled').addClass('disabled');
-                } else {
-                    this.container.find('.right .calendar-time select').removeAttr('disabled').removeClass('disabled');
-                }
             }
             if (this.endDate) {
                 this.container.find('input[name="daterangepicker_end"]').removeClass('active');
@@ -887,24 +882,6 @@
             } else if (side == 'right') {
                 selected = this.endDate.clone();
                 minDate = this.startDate;
-
-                //Preserve the time already selected
-                var timeSelector = this.container.find('.calendar.right .calendar-time div');
-                if (timeSelector.html() != '') {
-
-                    selected.hour(timeSelector.find('.hourselect option:selected').val() || selected.hour());
-                    selected.minute(timeSelector.find('.minuteselect option:selected').val() || selected.minute());
-                    selected.second(timeSelector.find('.secondselect option:selected').val() || selected.second());
-
-                    if (!this.timePicker24Hour) {
-                        var ampm = timeSelector.find('.ampmselect option:selected').val();
-                        if (ampm === 'PM' && selected.hour() < 12)
-                            selected.hour(selected.hour() + 12);
-                        if (ampm === 'AM' && selected.hour() === 12)
-                            selected.hour(0);
-                    }
-
-                }
 
                 if (selected.isBefore(this.startDate))
                     selected = this.startDate.clone();
@@ -1384,7 +1361,7 @@
             var i = 0;
             for (var range in this.ranges) {
               if (this.timePicker) {
-                    var format = this.timePickerSeconds ? "YYYY-MM-DD hh:mm:ss" : "YYYY-MM-DD hh:mm";
+                    var format = this.timePickerSeconds ? "YYYY-MM-DD HH:mm:ss" : "YYYY-MM-DD hh:mm";
                     //ignore times when comparing dates if time picker seconds is not enabled
                     if (this.startDate.format(format) == this.ranges[range][0].format(format) && this.endDate.format(format) == this.ranges[range][1].format(format)) {
                         customRange = false;
